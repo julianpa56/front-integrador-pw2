@@ -1,0 +1,36 @@
+<div class="container">
+
+    <div class="form-registro">
+        <h2 class="mb-5">Registrarse</h2>
+        <form class="form-floating mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Nombre</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Apellido</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Correo electrónico</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Contraseña</label>
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Foto de perfíl</label>
+                <input class="form-control" type="file" id="formFile" accept="image/*">
+            </div>
+            <div class="d-grid gap-2 ">
+                <button class="btn btn-primary" type="button">Crear cuenta</button>
+            </div>
+        </form>
+        <div class="alert alert-danger" role="alert">
+            Error al crear usuario, intente nuevamente
+        </div>
+        <hr>
+        <p>Ya tienes una cuenta? <a [routerLink]="'/iniciar-sesion'">Iniciar Sesión</a> </p>
+    </div>
+</div>

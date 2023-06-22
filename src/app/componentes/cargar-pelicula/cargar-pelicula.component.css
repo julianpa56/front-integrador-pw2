@@ -1,0 +1,18 @@
+.card-pelicula {
+    display: flex;
+    position: relative;
+    width: 490px;
+    min-width: 490px;
+    height: 700px;
+    min-height: 700px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-pelicula img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+}

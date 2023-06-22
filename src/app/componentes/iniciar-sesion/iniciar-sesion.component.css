@@ -1,0 +1,16 @@
+.container {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-login {
+    text-align: center;
+    width: 40%;
+}
+
+.form-login p a {
+    text-decoration: none;
+    font-weight: 700;
+}

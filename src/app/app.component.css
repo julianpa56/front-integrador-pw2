@@ -1,0 +1,41 @@
+.navbar {
+    background-color: rgb(30, 30, 30);
+    border-radius: 0px 0px 5px 5px;
+}
+
+.logo {
+    height: 75px;
+}
+
+.nav-item > .nav-link {
+    color: rgb(220, 220, 220);
+}
+
+.nav-item > .nav-link:hover{
+    color: rgb(36, 140, 180);
+}
+
+.contenedor {
+    width: 100%;
+    min-height: 100%;
+}
+
+.nav-usuario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-usuario h4 {
+    color: aliceblue;
+    padding: 0px;
+    margin: 0px;
+
+}
+
+.nav-usuario img {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+}

@@ -1,0 +1,16 @@
+.container {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-registro {
+    width: 40%;
+    text-align: center;
+}
+
+.form-registro p a {
+    text-decoration: none;
+    font-weight: 700;
+}
