@@ -9,6 +9,8 @@ import { RegistrarseComponent } from './componentes/registrarse/registrarse.comp
 import { CatalogoPeliculasComponent } from './componentes/catalogo-peliculas/catalogo-peliculas.component';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
 import { EditarPeliculaComponent } from './componentes/editar-pelicula/editar-pelicula.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,7 +25,10 @@ import { EditarPeliculaComponent } from './componentes/editar-pelicula/editar-pe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

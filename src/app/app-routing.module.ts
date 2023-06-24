@@ -8,12 +8,13 @@ import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil
 import { UsuarioAdministradorGuard } from './guards/usuario-administrador.guard';
 
 const routes: Routes = [
-  // {path:'*', component: , canActivate: []},
   {path:'iniciar-sesion', component: IniciarSesionComponent, },
   {path:'cargar-pelicula', component: CargarPeliculaComponent, canActivate: [UsuarioAdministradorGuard] },
   {path:'crear-cuenta', component: RegistrarseComponent},
   {path:'catalogo', component: CatalogoPeliculasComponent},
   {path:'mi-perfil', component: EditarPerfilComponent},
+  {path:'', component: IniciarSesionComponent},
+  {path:'**', redirectTo: ''},
 ];
 
 

@@ -2,20 +2,20 @@
 <div class="container">
     <div class="form-login">
         <h2 class="mb-5">Iniciar Sesión</h2>
-        <form class="form-floating mb-3">
+        <form class="form-floating mb-3" [formGroup]="formularioLogin" (ngSubmit)="onSubmit(formularioLogin.value)">
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="email" class="form-control" id="floatingInput" formControlName="correo_electronico">
                 <label for="floatingInput">Correo electronico</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" class="form-control" id="floatingPassword" formControlName="password">
                 <label for="floatingPassword">Contraseña</label>
             </div>
             <div class="d-grid gap-2 ">
-                <button class="btn btn-primary" type="button">Iniciar sesión</button>
+                <button class="btn btn-primary" type="submit">Iniciar sesión</button>
             </div>
         </form>
-        <div class="alert alert-danger" role="alert">
+        <div *ngIf="errorOcurrido" class="alert alert-danger" role="alert">
             Error al iniciar sesión, intente nuevamente
         </div>
         <hr>

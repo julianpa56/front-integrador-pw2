@@ -4,42 +4,39 @@
     <div class="row d-flex justify-content-center">
         <div class="col-md-5">
             <div class="form-cargar-pelicula">
-                <form action="">
+                <form [formGroup]="formularioPelicula" (ngSubmit)="onSubmit(formularioPelicula.value)">
                     <div class="mb-3">
                         <label for="titulo" class="form-label">Título de la película</label>
-                        <input type="text" class="form-control" id="titulo">
+                        <input type="text" class="form-control" id="titulo" formControlName="titulo">
                     </div>
                     <div class="mb-3">
                         <label for="director" class="form-label">Director</label>
-                        <input type="text" class="form-control" id="director">
+                        <input type="text" class="form-control" id="director" formControlName="director">
                     </div>
                     <div class="mb-3">
                         <label for="anio" class="form-label">Año</label>
-                        <input type="number" class="form-control" id="anio">
+                        <input type="number" class="form-control" id="anio" formControlName="year">
                     </div>
                     <div class="mb-3">
                         <label for="duracion" class="form-label">Duración</label>
-                        <input type="time" class="form-control" id="duracion">
+                        <input type="number" class="form-control" id="duracion" formControlName="duracion">
                     </div>
                     <div class="mb-3">
                         <label for="portada" class="form-label">Imagen de portada (enlace)</label>
-                        <input type="text" class="form-control" id="portada">
+                        <input type="text" class="form-control" id="portada" formControlName="fotoPelicula">
                     </div>
                     <div class="mb-3">
                         <label for="portada" class="form-label">Seleccione categoría</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" aria-label="Default select example" formControlName="id_categoria">
+                            <option *ngFor="let categoria of categorias"value="{{categoria.id_categoria}}">{{categoria.nombre}}</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="descripcion"></textarea>
                     </div>
                     <div class="d-grid gap-2 ">
-                        <button class="btn btn-primary" type="button">Crear película</button>
+                        <button class="btn btn-primary" type="submit">Crear película</button>
                     </div>
                 </form>
                 
