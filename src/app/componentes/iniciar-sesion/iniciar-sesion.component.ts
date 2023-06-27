@@ -24,6 +24,12 @@ export class IniciarSesionComponent {
     });
   }
 
+  ngOnInit(): void {
+    if(localStorage.getItem('usuario')){
+      this._router.navigate(['/catalogo'])
+    }
+  }
+
 
   onSubmit(data : any) {
     this._usuarioService.login(data).subscribe(
@@ -31,6 +37,7 @@ export class IniciarSesionComponent {
         next : (usuario) => {
           if(usuario != null){
             this.errorOcurrido = false
+            this._usuarioService.setUsuarioObservable(usuario)
             localStorage.setItem('usuario', JSON.stringify(usuario));
             this._router.navigate(['/catalogo'])
           }

@@ -1,10 +1,11 @@
 <div class="container">
-    <h2 class="d-block text-center mt-5 mb-5">Cargar nueva película</h2>
+    <h2 *ngIf="!editarPelicula" class="d-block text-center mt-5 mb-5">Cargar nueva película</h2>
+    <h2 *ngIf="editarPelicula" class="d-block text-center mt-5 mb-5">Editar película</h2>
 
     <div class="row d-flex justify-content-center">
         <div class="col-md-5">
             <div class="form-cargar-pelicula">
-                <form [formGroup]="formularioPelicula" (ngSubmit)="onSubmit(formularioPelicula.value)">
+                <form [formGroup]="formularioPelicula">
                     <div class="mb-3">
                         <label for="titulo" class="form-label">Título de la película</label>
                         <input type="text" class="form-control" id="titulo" formControlName="titulo">
@@ -23,7 +24,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="portada" class="form-label">Imagen de portada (enlace)</label>
-                        <input type="text" class="form-control" id="portada" formControlName="fotoPelicula">
+                        <input type="text" class="form-control" id="portada" formControlName="fotoPelicula" (change)="cargarImagen($event)">
                     </div>
                     <div class="mb-3">
                         <label for="portada" class="form-label">Seleccione categoría</label>
@@ -36,7 +37,9 @@
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="descripcion"></textarea>
                     </div>
                     <div class="d-grid gap-2 ">
-                        <button class="btn btn-primary" type="submit">Crear película</button>
+                        <button *ngIf="!editarPelicula" class="btn btn-primary" (click)="onSubmit(formularioPelicula.value)" type="submit" [disabled]="!verificarFormulario()">Crear película</button>
+                        <button *ngIf="editarPelicula" class="btn btn-success" (click)="modificarPelicula(formularioPelicula.value)" [disabled]="!verificarFormulario()">Guardar cambios</button>
+                        <button *ngIf="editarPelicula" class="btn btn-danger" (click)="eliminarPelicula(formularioPelicula.value.id_pelicula)" [disabled]="!verificarFormulario()">Eliminar película</button>
                     </div>
                 </form>
                 
@@ -44,15 +47,15 @@
         </div>
         <div class="col-md-5 d-flex justify-content-end">
             <div class="card-pelicula">
-                <img src="assets/not-found.png" alt="imagen-portada">
+                <img src="{{imagenPrevisualizada.length < 20  ? 'assets/not-found.png' : imagenPrevisualizada}}">
             </div>
         </div>
         <div class="col-md-10 mt-5">
-            <div class="alert alert-success d-block" role="alert">
-                A simple success alert—check it out!
+            <div *ngIf="cambioCorrecto" class="alert alert-success d-block" role="alert">
+                {{mensaje}}
             </div>
-            <div class="alert alert-danger" role="alert">
-                A simple danger alert—check it out!
+            <div *ngIf="errorOcurrido" class="alert alert-danger" role="alert">
+                {{mensaje}}
             </div>
         </div>
     </div>

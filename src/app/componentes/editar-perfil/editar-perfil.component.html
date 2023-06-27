@@ -4,28 +4,28 @@
     <div class="row d-flex justify-content-center">
         <div class="col-md-5">
             <div class="form-usuario">
-                <form action="">
+                <form [formGroup]="formularioUsuario">
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre de usuario</label>
-                        <input type="text" class="form-control" id="nombre">
+                        <input type="text" class="form-control" id="nombre" formControlName="nombre">
                     </div>
                     <div class="mb-3">
                         <label for="correo" class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" id="correo">
+                        <input type="email" class="form-control" id="correo" formControlName="correo_electronico">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="text" class="form-control" id="password">
+                        <input type="text" class="form-control" id="password" formControlName="password">
                     </div>
                     <div class="mb-3">
                         <label for="foto-perfil" class="form-label">Imagen de perfil (enlace)</label>
-                        <input type="text" class="form-control" id="foto-perfil">
+                        <input type="text" class="form-control" id="foto-perfil" formControlName="fotoUsuario">
                     </div>
                     <div class="d-grid gap-2 mb-2">
-                        <button class="btn btn-primary" type="button">Guardar cambios</button>
+                        <button class="btn btn-primary" type="button" (click)="onSubmit(formularioUsuario.value)">Guardar cambios</button>
                     </div>
                     <div class="d-grid gap-2 ">
-                        <button class="btn btn-danger" type="button">Eliminar cuenta</button>
+                        <button class="btn btn-danger" type="button" (click)="eliminarUsuario()">Eliminar cuenta</button>
                     </div>
                 </form>
                 
@@ -33,15 +33,16 @@
         </div>
         <div class="col-md-5 d-flex justify-content-end">
             <div class="imagen-usuario">
-                <img src="assets/not-found.png" alt="imagen-portada">
+                <img *ngIf="usuario.fotoUsuario == null"src="assets/not-found.png" alt="imagen-portada">
+                <img *ngIf="usuario.fotoUsuario != null"src="{{usuario.fotoUsuario}}" alt="imagen-portada">
             </div>
         </div>
         <div class="col-md-10 mt-5">
-            <div class="alert alert-success d-block" role="alert">
-                A simple success alert—check it out!
+            <div *ngIf="peticionExitosa" class="alert alert-success d-block" role="alert">
+                Los cambios han sido guardados exitosamente
             </div>
-            <div class="alert alert-danger" role="alert">
-                A simple danger alert—check it out!
+            <div *ngIf="errorOcurrido" class="alert alert-danger" role="alert">
+                Ocurrio un error, intente nuevamente
             </div>
         </div>
     </div>

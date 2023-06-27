@@ -28,11 +28,6 @@
     margin-left: 10px;
 }
 
-.card-pelicula h4:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
 .card-pelicula span {
     z-index: 60;
     position: absolute;

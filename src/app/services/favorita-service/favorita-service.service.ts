@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,21 +8,25 @@ import { Observable } from 'rxjs';
 })
 export class FavoritaServiceService {
 
-  api = environment.apiUrl
+  api = environment.apiUrl+'/usuario/favorita'
 
   constructor(
     private http : HttpClient
   ) { }
 
-  obtenerFavoritas(): Observable<any> {
-    return this.http.get(this.api+'/')
+  obtenerFavoritas(id : any): Observable<any> {
+    return this.http.get(environment.apiUrl+'/usuario/'+id+'/favorita')
   }
 
-  agregarFavorita() {
-    return this.http.get(this.api+'/')
+  agregarFavorita(data : any) {
+    return this.http.post(this.api,data)
   }
 
-  eliminarFavorita() {
-    return this.http.get(this.api+'/')
+  eliminarFavorita(data : any): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+    return this.http.delete(this.api,{headers : headers , body : data})
   }
 }

@@ -1,98 +1,35 @@
 <h2 class="d-block text-center mt-5">Catálogo de películas</h2>
 
+
 <section class="container">
+    <div *ngIf="cambioCorrecto" class="alert alert-success alert-dismissible fade show" role="alert">
+        Cambios guardados exitosamente
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div *ngIf="errorOcurrido" class="alert alert-danger alert-dismissible fade show" role="alert">
+        Ocurrio un error, intente nuevamente
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div *ngIf="catalogo.length == 0" class="alert alert-primary" role="alert">
+        No existen peliculas cargadas
+    </div>
 
     <div class="row p-3">
-        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center">
+        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center" *ngFor="let pelicula of catalogo">
             <div class="card-pelicula">
-                <!-- <div class="editar"><i class="fa-solid fa-pen-to-square"></i></div> -->
-                <div class="favorito" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
-                    <i class="fa-solid fa-star"></i>
+                <div *ngIf="usuario.tipo == 'admin'" class="editar" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" [routerLink]="'/editar-pelicula/'+pelicula.id_pelicula">
+                    <i class="fa-solid fa-pen-to-square"></i>
                 </div>
-                <!-- <div class="favorito" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
-                    <i class="fa-regular fa-star"></i>
-                </div> -->
-                <h4>Titulo card</h4>
-                <span>2023</span>
-                <div class="gradiente"></div>
-                <img src="assets/not-found.png" alt="imagen-portada">
-            </div>
-        </div>
-        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center">
-            <div class="card-pelicula">
-                <!-- <div class="favorito" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
-                    <i class="fa-solid fa-star"></i>
-                </div> -->
-                <div class="favorito" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
+                <div *ngIf="!verificarFavorita(pelicula.id_pelicula) && usuario.tipo == 'cliente'" class="favorito" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" (click)="seleccionarFavorita(pelicula)">
                     <i class="fa-regular fa-star"></i>
                 </div>
-                <h4>Titulo card</h4>
-                <span>2023</span>
+                <div *ngIf="verificarFavorita(pelicula.id_pelicula) &&usuario.tipo == 'cliente'" class="favorito" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" (click)="seleccionarFavorita(pelicula)">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h4 [routerLink]="['/detalles/'+pelicula.id_pelicula]">{{pelicula.titulo}}</h4>
+                <span>{{pelicula.year}}</span>
                 <div class="gradiente"></div>
-                <img src="assets/not-found.png" alt="imagen-portada">
-            </div>
-        </div>
-        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center">
-            <div class="card-pelicula">
-                <div class="editar"><i class="fa-solid fa-pen-to-square"></i></div>
-                <h4>Titulo card</h4>
-                <span>2023</span>
-                <div class="gradiente"></div>
-                <img src="assets/not-found.png" alt="imagen-portada">
-            </div>
-        </div>
-        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center">
-            <div class="card-pelicula">
-                <div class="editar"><i class="fa-solid fa-pen-to-square"></i></div>
-                <h4>Titulo card</h4>
-                <span>2023</span>
-                <div class="gradiente"></div>
-                <img src="assets/not-found.png" alt="imagen-portada">
-            </div>
-        </div>
-        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center">
-            <div class="card-pelicula">
-                <div class="editar"><i class="fa-solid fa-pen-to-square"></i></div>
-                <h4>Titulo card</h4>
-                <span>2023</span>
-                <div class="gradiente"></div>
-                <img src="assets/not-found.png" alt="imagen-portada">
-            </div>
-        </div>
-        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center">
-            <div class="card-pelicula">
-                <div class="editar"><i class="fa-solid fa-pen-to-square"></i></div>
-                <h4>Titulo card</h4>
-                <span>2023</span>
-                <div class="gradiente"></div>
-                <img src="assets/not-found.png" alt="imagen-portada">
-            </div>
-        </div>
-        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center">
-            <div class="card-pelicula">
-                <div class="editar"><i class="fa-solid fa-pen-to-square"></i></div>
-                <h4>Titulo card</h4>
-                <span>2023</span>
-                <div class="gradiente"></div>
-                <img src="assets/not-found.png" alt="imagen-portada">
-            </div>
-        </div>
-        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center">
-            <div class="card-pelicula">
-                <div class="editar"><i class="fa-solid fa-pen-to-square"></i></div>
-                <h4>Titulo card</h4>
-                <span>2023</span>
-                <div class="gradiente"></div>
-                <img src="assets/not-found.png" alt="imagen-portada">
-            </div>
-        </div>
-        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center">
-            <div class="card-pelicula">
-                <div class="editar"><i class="fa-solid fa-pen-to-square"></i></div>
-                <h4>Titulo card</h4>
-                <span>2023</span>
-                <div class="gradiente"></div>
-                <img src="assets/not-found.png" alt="imagen-portada">
+                <img src="{{pelicula.fotoPelicula == null || pelicula.fotoPelicula == '' || pelicula.fotoPelicula.length < 20 ? 'assets/not-found.png' : pelicula.fotoPelicula}}">
             </div>
         </div>
     </div>
@@ -109,11 +46,11 @@
                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Agregar a Favoritos</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                Show a second modal and hide this one with the button below.
+            <div *ngIf="favoritaSeleccionada != null" class="modal-body">
+                Desea agregar '{{favoritaSeleccionada.titulo}}' a sus favoritas?
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Aceptar</button>
+                <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" (click)="agregarFavorita()">Aceptar</button>
                 <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
             </div>
         </div>
@@ -127,27 +64,34 @@
                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Eliminar de Favoritos</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                Show a second modal and hide this one with the button below.
+            <div *ngIf="favoritaSeleccionada != null" class="modal-body">
+                Desea eliminar '{{favoritaSeleccionada.titulo}}' de su lista de favoritas?
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Aceptar</button>
+                <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" (click)="eliminarFavorita()">Aceptar</button>
                 <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Toast notificacion -->
-
-<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+<!-- Modal administrador -->
+<div *ngIf="favoritaSeleccionada != null" class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
     tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="notificacion modal-body">
-            <p>Texto de la notificacion</p>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Eliminar de Favoritos</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Desea eliminar '{{favoritaSeleccionada.titulo}}' del catálogo?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" (click)="eliminar()">Aceptar</button>
+                <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+            </div>
         </div>
     </div>
 </div>
 
-<button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">Open first modal</button>

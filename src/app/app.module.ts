@@ -8,9 +8,10 @@ import { IniciarSesionComponent } from './componentes/iniciar-sesion/iniciar-ses
 import { RegistrarseComponent } from './componentes/registrarse/registrarse.component';
 import { CatalogoPeliculasComponent } from './componentes/catalogo-peliculas/catalogo-peliculas.component';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
-import { EditarPeliculaComponent } from './componentes/editar-pelicula/editar-pelicula.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FavoritasComponent } from './componentes/favoritas/favoritas.component';
+import { DetallesComponent } from './componentes/detalles/detalles.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegistrarseComponent,
     CatalogoPeliculasComponent,
     EditarPerfilComponent,
-    EditarPeliculaComponent
+    FavoritasComponent,
+    DetallesComponent
   ],
   imports: [
     BrowserModule,

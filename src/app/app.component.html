@@ -1,29 +1,29 @@
 <div class="contenedor">
   <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" [routerLink]="'/'">
         <img class="logo" src="./../assets/LOGO.png" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
+      <div *ngIf="usuario != null" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul *ngIf="usuario.tipo != 'admin'" class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
             <li class="nav-item">
               <a class="nav-link active" [routerLink]="'/catalogo'">Catálogo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Favoritas</a>
+              <a class="nav-link active" [routerLink]="'/favoritas'">Favoritas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" [routerLink]="'/mi-perfil'">Mi perfíl</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Cerrar Sesión</a>
+              <a class="nav-link active" (click)="cerrarSesion()" style="cursor: pointer;">Cerrar Sesión</a>
             </li>
         </ul>
   
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul *ngIf="usuario.tipo == 'admin'" class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" [routerLink]="'/cargar-pelicula'">Cargar película</a>
           </li>
@@ -34,13 +34,13 @@
             <a class="nav-link active" [routerLink]="'/mi-perfil'">Mi perfíl</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Cerrar Sesión</a>
+            <a class="nav-link active" (click)="cerrarSesion()" style="cursor: pointer;">Cerrar Sesión</a>
           </li>
         </ul>
         
-        <ul class="navbar-nav nav-usuario">
-          <h4>Usuario</h4>
-          <img src="assets/avatar.png" alt="">
+        <ul *ngIf="usuario != null" class="navbar-nav nav-usuario">
+          <h4>{{usuario.nombre}}</h4>
+          <img src="{{usuario.fotoUsuario}}" alt="">
         </ul>
       </div>
     </div>

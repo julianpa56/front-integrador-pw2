@@ -1,0 +1,53 @@
+
+<h2 class="d-block text-center mt-5">Tu lista de películas favoritas</h2>
+
+<section class="container">
+
+    <div *ngIf="cambioCorrecto" class="alert alert-success alert-dismissible fade show" role="alert">
+        Cambios guardados exitosamente
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div *ngIf="errorOcurrido" class="alert alert-danger alert-dismissible fade show" role="alert">
+        Ocurrio un error, intente nuevamente
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div *ngIf="favoritas.length == 0" class="alert alert-primary" role="alert">
+        Tu lista de películas favoritas está vacía
+    </div>
+
+    <div class="row p-3">
+        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center" *ngFor="let favorita of favoritas">
+            <div class="card-pelicula">
+                <div class="favorito" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" (click)="seleccionarFavorita(favorita)">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h4>{{favorita.titulo}}</h4>
+                <span>{{favorita.year}}</span>
+                <div class="gradiente"></div>
+                <img src="{{favorita.fotoPelicula == null || favorita.fotoPelicula == '' ? 'assets/not-found.png' : favorita.fotoPelicula}}">
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Modales de favoritos -->
+
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Eliminar de Favoritos</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="favoritaSeleccionada != null" class="modal-body">
+                Desea eliminar '{{favoritaSeleccionada.titulo}}' de su lista de favoritas?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" (click)="eliminarFavorita()">Aceptar</button>
+                <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

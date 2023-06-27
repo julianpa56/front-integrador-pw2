@@ -1,28 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { UsuarioServiceService } from '../services/usuario-service/usuario-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioAdministradorGuard implements CanActivate {
-  constructor(private router: Router) { }
+  constructor(private _router: Router) { }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let usuario = {
-      usuario : 'Lucas',
-      pass : '1234',
-      rol: 'Admin'
-    }
-
-    let resp = false
+    let usuarioLoggeado = localStorage.getItem('usuario')!= null ? JSON.parse(localStorage.getItem('usuario')!):null 
     
-    if (usuario.rol == 'Admin'){
+    let resp = false
+
+    if (usuarioLoggeado.tipo == 'admin'){
       resp = true
     }
     else {
-      this.router.navigate(['/*'])
+      this._router.navigate(['/catalogo'])
     }
 
     return resp;
